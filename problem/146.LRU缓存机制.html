@@ -8,7 +8,6 @@
   </head>
   <body></body>
   <script>
-    // LRU（Least recently used，最近最少使用）算法。该算法的观点是，最近被访问的数据那么它将来访问的概率就大，缓存满的时候，优先淘汰最无人问津者。
     function LRUCache(capacity) {
       this.cache = [];
       this.capacity = capacity;
@@ -54,7 +53,8 @@
 
   <!-- <script>
         // 执行用时 :368 ms   内存消耗:59.4m
-        // LRU（Least recently used，最近最少使用）算法。该算法的观点是，最近被访问的数据那么它将来访问的概率就大，缓存满的时候，优先淘汰最无人问津者。
+         // LRU（Least recently used，最近最少使用）算法。该算法的观点是，最近被访问的数据那么它将来访问的概率就大，缓存满的时候，优先淘汰最无人问津者。
+    // 一个优质解释:首先得了解一下LRU,LRU举例来说,就是一个固定盒子只能放n(n固定)本书,每放一本书,后放的肯定放在前面一本的上面,然后如果想要拿书,如果里面有,就把书拿出来,放在底下所有书的最上面!当书本数超出n,就把最底下那本书给拿出去,最后放的依然放在最上面!
          function LRUCache(capacity) {
       this.cache = [];
       this.capacity = capacity;
@@ -81,6 +81,7 @@
     LRUCache.prototype.get = function(key) {
       let index = this.cache.findIndex(item => item.key === key);
       if (this.cache[index]) {
+           // 调用的时候将当前key放到数组的最后一位
         let remove = this.cache.splice(index, 1)[0];
         this.cache.push(remove);
         return remove.value;
