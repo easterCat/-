@@ -1,36 +1,73 @@
-# js-base
+## 累加
 
-#### Description
-js一些基礎
+```
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>242.有效的字母异位数</title>
+  </head>
+  <body></body>
+  <script>
+    // 累计
+    var isAnagram = function(s, t) {
+      if (s.length !== t.length) return false;
+      let obj = {};
+      let len = s.length;
+      let result = true;
+      for (let i = 0; i < len; i++) {
+        obj[s.charAt(i)] ? obj[s.charAt(i)]++ : (obj[s.charAt(i)] = 1);
+      }
+      for (let i = 0; i < len; i++) {
+        if (!obj[t.charAt(i)]) {
+          result = false;
+          break;
+        }
+        obj[t.charAt(i)]--;
+        if (obj[t.charAt(i)] < 0) {
+          result = false;
+          break;
+        }
+      }
+      return result ? Object.values(obj).every(i => i >= 0) : result;
+    };
+    console.log(isAnagram("anagram", "nagaram"));
+  </script>
+</html>
+```
 
-#### Software Architecture
-Software architecture description
+## 排序
 
-#### Installation
+```
+    // 数组排序
+    var isAnagram = function(s, t) {
+      if (s.length !== t.length) return false;
+      s = s
+        .split("")
+        .sort()
+        .join();
+      t = t
+        .split("")
+        .sort()
+        .join();
 
-1. xxxx
-2. xxxx
-3. xxxx
+      return s === t;
+    };
+```
 
-#### Instructions
+## 哈希
 
-1. xxxx
-2. xxxx
-3. xxxx
+```
+ // 哈希
+    var isAnagram = function(s, t) {
+      if (s.length !== t.length) return false;
 
-#### Contribution
-
-1. Fork the repository
-2. Create Feat_xxx branch
-3. Commit your code
-4. Create Pull Request
-
-
-#### Gitee Feature
-
-1. You can use Readme\_XXX.md to support different languages, such as Readme\_en.md, Readme\_zh.md
-2. Gitee blog [blog.gitee.com](https://blog.gitee.com)
-3. Explore open source project [https://gitee.com/explore](https://gitee.com/explore)
-4. The most valuable open source project [GVP](https://gitee.com/gvp)
-5. The manual of Gitee [https://gitee.com/help](https://gitee.com/help)
-6. The most popular members  [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
+      for (let i = 0; i < s.length; i++) {
+        obj[s.charAt(i)] ? obj[s.charAt(i)]++ : (obj[s.charAt(i)] = 1);
+        obj[t.charAt(i)] ? obj[t.charAt(i)]-- : (obj[t.charAt(i)] = -1);
+      }
+      return Object.valyes(obj).every(i => i === 0);
+    };
+```
